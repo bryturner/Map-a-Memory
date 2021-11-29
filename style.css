@@ -1,9 +1,9 @@
 /* 
 primary-colors: #2ebeb4 #f4705b #fba63b
-secondary-colors: #33396d #707499 #ad212e 
-light-shades: #eaf9f8 #d5f2f0 #fef1ef #feedd8 #fdca89
-dark-shades: #259890 #175f5a #7a382e
-dark for text: #092624 #082220 #051312 #1e2b2a
+secondary-colors: #33396d #707499 #ab4e40
+light-shades: #eaf9f8 #d5f2f0 #6dd2cb #fef1ef #feedd8 #fdca89
+dark-shades: #259890 #175f5a 
+dark for text: #092624 #0e3936
 */
 
 :root {
@@ -11,17 +11,18 @@ dark for text: #092624 #082220 #051312 #1e2b2a
   --color-brand--2: #f4705b;
 
   --color-secondary--1: #f4705b;
-  --color-secondary--2: #707499;
-  --color-secondary--3: #fba63b;
+  --color-secondary--2: #f68d7c;
+  --color-secondary--3: #ab4e40;
+  --color-secondary--4: #49221b;
 
   --color-dark--1: #259890;
   --color-dark--2: #175f5a;
 
   --color-light--1: #d5f2f0;
   --color-light--2: #fef1ef;
-  --color-light--3: rgb(214, 222, 224);
+  --color-light--3: #6dd2cb;
 
-  --color-dark--text: #092624;
+  --color-dark--text: #0e3936;
   --color-light--text: #d5f2f0;
   --color-lightest--text: #f4fcfc;
 
@@ -56,7 +57,54 @@ body {
   grid-template-columns: 35fr 65fr;
 }
 
-/* GENERAL */
+/* !Buttons and button icons */
+.btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.btn--close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 5;
+}
+
+.btn__header__list {
+  right: 2%;
+  top: 4%;
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.header__list__icon--close {
+  font-size: 2.4rem;
+  color: var(--color-secondary--3);
+  transition: var(--transition--4);
+}
+
+.header__list__icon--close:hover {
+  color: var(--color-secondary--2);
+}
+
+.btn__event__close {
+  top: 3%;
+  right: 1%;
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.event__icon--close {
+  font-size: 2.4rem;
+  color: var(--color-dark--text);
+  transition: var(--transition--4);
+}
+
+.event__icon--close:hover {
+  color: var(--color-brand--1);
+}
 
 /* HEADING */
 .heading {
@@ -64,17 +112,10 @@ body {
   position: relative;
   background-color: var(--color-brand--2);
 }
-.header__details {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-}
 
-.header__details--container {
-  position: relative;
-}
 #details__checkbox {
   position: absolute;
+
   opacity: 0;
   height: 2.4rem;
   width: 2.4rem;
@@ -85,41 +126,58 @@ body {
   outline: none;
 }
 
-#details__checkbox:checked ~ .header__list {
+#details__checkbox:checked ~ .header__list__container {
   display: block;
 }
+
 .header__label {
-  height: 2.4rem;
-  width: 2.4rem;
+  position: absolute;
+  top: 50%;
+  left: 1%;
+  transform: translate(0, -50%);
+  height: 3rem;
+  width: 3rem;
 }
 
 .header__icon {
-  font-size: 2.4rem;
-  color: var(--color-light--text);
+  font-size: 3rem;
+  color: var(--color-secondary--4);
   cursor: pointer;
   transition: var(--transition--4);
 }
 
 .header__icon:hover {
-  color: var(--color-dark--text);
+  color: var(--color-secondary--3);
+}
+
+.header__list__container {
+  position: absolute;
+  top: 20%;
+  left: 3.5%;
+  display: none;
 }
 
 .header__list {
-  position: absolute;
-  top: 0;
-  left: 200%;
+  position: relative;
+  display: grid;
+  gap: 1.2rem;
+  line-height: 1.6;
   background-color: var(--color-light--2);
   border-radius: 5px;
-  padding: 2rem 4rem 2rem 5rem;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.219);
+  padding: 2rem 2.6rem 2rem 3rem;
   width: max-content;
-  display: none;
+  max-width: 40rem;
   z-index: 99;
 }
-/* .header__list__item {
-} */
+
+.header__list__item {
+  font-size: 1.4rem;
+  margin-left: 1.2rem;
+}
 
 .primary-heading {
-  color: #082220;
+  color: var(--color-secondary--4);
   font-size: 2.6rem;
   text-align: center;
   padding: 0.8rem 0;
@@ -140,6 +198,7 @@ body {
   font-size: 2.4rem;
   text-align: center;
 }
+
 .sidebar {
   grid-column: 1/ 2;
   background-color: var(--color-dark--1);
@@ -176,6 +235,7 @@ body {
 
 /* !details */
 .event {
+  position: relative;
   background-color: var(--color-light--1);
   border-radius: 5px;
   padding: 1.4rem 2.8rem;
@@ -184,7 +244,6 @@ body {
   flex-direction: column;
   gap: 0.6rem;
   cursor: pointer;
-
   color: var(--color-dark--text);
   transition: all 0.5s, transform 1ms;
 }
@@ -194,7 +253,7 @@ body {
   font-size: 2.4rem;
   transition: var(--transition--4);
   padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--color-light--text);
+  border-bottom: 1px solid var(--color-light--3);
   margin-bottom: 0.6rem;
 }
 
@@ -228,7 +287,7 @@ body {
   line-height: 1.6;
   padding: 0.8rem 1rem;
   border-radius: 5px;
-  border: 4px dotted var(--color-light--text);
+  border: 4px dotted var(--color-light--3);
 }
 
 /* !form */

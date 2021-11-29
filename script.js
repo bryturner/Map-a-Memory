@@ -14,6 +14,9 @@ const months = [
   'November',
   'December',
 ];
+
+const detailsCheckbox = document.getElementById('details__checkbox');
+const btnHeaderClose = document.querySelector('.btn__header__list');
 const instructions = document.querySelector('.instructions');
 const form = document.querySelector('.form');
 const containerEvents = document.querySelector('.events');
@@ -21,8 +24,13 @@ const inputEvent = document.querySelector('.form__input--event');
 const inputDate = document.querySelector('.form__input--date');
 const inputMemory = document.querySelector('.form__input--memory');
 
+const btnDeleteEvent = Array.from(
+  document.querySelectorAll('.btn__event__close')
+);
 const inputRadioBtns = Array.from(document.querySelectorAll('.radio__btn'));
 const formLabelIcons = Array.from(document.querySelectorAll('.form__icon'));
+
+console.dir(btnDeleteEvent);
 
 class MemoryEvent {
   id = (Date.now() + '').slice(-10);
@@ -64,10 +72,18 @@ class App {
   constructor() {
     this._getPosition();
     this._getLocalStorage();
-    form.addEventListener('submit', this._newMemoryEvent.bind(this));
+
     this._removeIconClass();
     this._selectIcon();
+    this._closeDetailsBox();
+    // this._removeFromLocalStorage();
+
+    // Event listeners
+    form.addEventListener('submit', this._newMemoryEvent.bind(this));
     containerEvents.addEventListener('click', this._moveToPopup.bind(this));
+    // btnDeleteEvent.forEach(btn => {
+    //   btn.addEventListener('click', this._removeFromLocalStorage.bind(this));
+    // });
   }
 
   _getPosition() {
@@ -96,6 +112,12 @@ class App {
     this.#map.on('click', this._showForm.bind(this));
 
     this.#memoryEvents.forEach(mEvent => this._renderMemoryEventMarker(mEvent));
+  }
+
+  _closeDetailsBox() {
+    btnHeaderClose.addEventListener('click', function () {
+      detailsCheckbox.checked = false;
+    });
   }
 
   _showForm(mapE) {
@@ -210,6 +232,9 @@ class App {
   _renderMemoryEvent(memEvent) {
     let html = `
   <li class='event' data-id="${memEvent.id}">
+    <button class="btn btn__event__close btn--close">
+      <i class="ph-x-circle event__icon--close"></i>
+    </button>  
     <div class="event__title">
       <i class="${memEvent.icon} event__icon"></i>${memEvent.eventTitle}
     </div>
@@ -253,6 +278,18 @@ class App {
 
     this.#memoryEvents.forEach(mEvent => this._renderMemoryEvent(mEvent));
   }
+
+  // _removeFromLocalStorage(e) {
+  //   console.log(this.#memoryEvents);
+  //   console.log(btnDeleteEvent);
+  //   const eventElement = e.target.closest('.event');
+  //   console.log(eventElement);
+
+  //   const memoEvent = this.#memoryEvents.find(
+  //     memE => memE.id === eventElement.dataset.id
+  //   );
+  //   console.log(memoEvent);
+  // }
 
   reset() {
     localStorage.removeItem('memEvents');
