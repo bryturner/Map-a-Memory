@@ -12,7 +12,7 @@ dark for text: #092624 #0e3936
 
   --color-secondary--1: #f4705b;
   --color-secondary--2: #f68d7c;
-  --color-secondary--3: #ab4e40;
+  --color-secondary--3: rgb(171, 78, 64);
   --color-secondary--4: #49221b;
 
   --color-dark--1: #259890;
@@ -247,8 +247,13 @@ body {
   color: var(--color-dark--text);
   transition: all 0.5s, transform 1ms;
 }
-
+.event__emoji {
+  font-size: 2rem;
+}
 .event__title {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
   color: var(--color-dark--text);
   font-size: 2.4rem;
   transition: var(--transition--4);
@@ -339,6 +344,11 @@ body {
   margin-bottom: 0.4rem;
 }
 
+/* .form__label--radio {
+  
+  font-size: 1.6rem;
+} */
+
 /* !inputs */
 .form__input {
   border: 1px solid var(--color-dark--text);
@@ -386,24 +396,19 @@ body {
 }
 
 /* !icons */
-.sidebar__icon {
-  cursor: pointer;
-}
-
 .form__icon {
   position: relative;
-  font-size: 2.4rem;
-  color: var(--color-dark--1);
+  font-size: 2.2rem;
   cursor: pointer;
   transition: var(--transition--4);
 }
 
 .form__icon:hover {
-  color: var(--color-secondary--1);
+  transform: scale(1.2);
 }
 
 .form__icon--selected {
-  color: var(--color-secondary--3);
+  transform: scale(1.4);
 }
 
 /* Popup styling */
@@ -434,10 +439,7 @@ body {
   background-color: var(--color-dark--1);
 }
 
-/* Marker styling */
-.my-div-icon {
-  background-color: none;
-  border: none;
-  color: purple;
-  font-size: 28px;
-}
+/* .leaflet-marker-icon {
+  margin-left: -17px !important;
+  margin-top: -15px !important;
+} */
