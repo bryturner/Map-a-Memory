@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+    <script defer src="script.js"></script>
+    <title>Remember Your Love</title>
+  </head>
+  <body>
+    <div class="body__container">
+      <header class="heading">
+        <div class="header__details">
+          <div class="header__details--container">
+            <input type="checkbox" name="details" id="details__checkbox" />
+            <label for="details__checkbox" class="header__label"
+              ><i class="ph-info header__icon"></i
+            ></label>
+            <ul class="header__list">
+              <li class="header__list__item">
+                Keep track of all the good memories with that special someone.
+              </li>
+              <li class="header__list__item">
+                Use this app to log when and where the memories took place.
+              </li>
+              <li class="header__list__item">
+                To see the code and README.md for this site, visit my
+                repository!
+              </li>
+            </ul>
+          </div>
+        </div>
+        <h1 class="primary-heading">The Rememb-o-map</h1>
+      </header>
+      <div id="map"></div>
+      <div class="sidebar">
+        <ul class="events">
+          <!-- hidden -->
+          <div class="instructions">Select the location of the event</div>
+          <form name="eventForm" class="form hidden">
+            <div class="form__container--event-date">
+              <div class="form__row form__row--event">
+                <label class="form__label">The Occasion</label>
+                <input
+                  type="text"
+                  name="event-title"
+                  class="form__input form__input--event"
+                  placeholder="Alexandra's Birthday"
+                  required
+                />
+              </div>
+              <div class="form__row form__row--date">
+                <label class="form__label">Date & Time</label>
+                <input
+                  required
+                  class="form__input form__input--date"
+                  type="datetime-local"
+                />
+              </div>
+            </div>
+            <div class="form__row form__row--memory">
+              <label class="form__label">My Memories</label>
+              <textarea
+                required
+                cols="30"
+                rows="3"
+                class="form__input form__input--memory"
+                placeholder="I remember..."
+              ></textarea>
+            </div>
+            <div class="form__row form__row--radios">
+              <span class="form__label form__label--span"
+                >Choose an icon for the occasion</span
+              >
+              <div class="radio__buttons">
+                <label class="form__label--radio" for="heart"
+                  ><i class="ph-heart-straight-fill form__icon"
+                    ><input
+                      required="required"
+                      value="ph-heart-straight-fill"
+                      type="radio"
+                      name="radioIcon"
+                      id="heart"
+                      class="radio__btn" /></i
+                ></label>
+
+                <label class="form__label--radio" for="gift"
+                  ><i class="ph-gift-fill form__icon"
+                    ><input
+                      required="required"
+                      value="ph-gift-fill"
+                      type="radio"
+                      name="radioIcon"
+                      id="gift"
+                      class="radio__btn" /></i
+                ></label>
+
+                <label class="form__label--radio" for="smiley"
+                  ><i class="ph-smiley-fill form__icon"
+                    ><input
+                      required="required"
+                      value="ph-smiley-fill"
+                      type="radio"
+                      name="radioIcon"
+                      id="smiley"
+                      class="radio__btn" /></i
+                ></label>
+
+                <label class="form__label--radio" for="drink"
+                  ><i class="ph-brandy-fill form__icon">
+                    <input
+                      required="required"
+                      value="ph-brandy-fill"
+                      type="radio"
+                      name="radioIcon"
+                      id="drink"
+                      class="radio__btn" /></i
+                ></label>
+
+                <label class="form__label--radio" for="fork-knife"
+                  ><i class="ph-fork-knife-fill form__icon"
+                    ><input
+                      required="required"
+                      value="ph-fork-knife-fill"
+                      type="radio"
+                      name="radioIcon"
+                      id="fork-knife"
+                      class="radio__btn" /></i
+                ></label>
+
+                <label class="form__label--radio" for="ticket"
+                  ><i class="ph-ticket-fill form__icon">
+                    <input
+                      required="required"
+                      value="ph-ticket-fill"
+                      type="radio"
+                      name="radioIcon"
+                      id="ticket"
+                      class="radio__btn" /></i
+                ></label>
+
+                <label class="form__label--radio" for="tote"
+                  ><i class="ph-tote-fill form__icon">
+                    <input
+                      required="required"
+                      value="ph-tote-fill"
+                      type="radio"
+                      name="radioIcon"
+                      id="tote"
+                      class="radio__btn" /></i
+                ></label>
+
+                <label class="form__label--radio" for="music"
+                  ><i class="ph-music-notes-fill form__icon">
+                    <input
+                      required="required"
+                      value="ph-music-notes-fill"
+                      type="radio"
+                      name="radioIcon"
+                      id="music"
+                      class="radio__btn" /></i
+                ></label>
+
+                <label class="form__label--radio" for="person"
+                  ><i class="ph-person-simple-walk-fill form__icon"
+                    ><input
+                      required="required"
+                      value="ph-person-simple-walk-fill"
+                      type="radio"
+                      name="radioIcon"
+                      id="person"
+                      class="radio__btn" /></i
+                ></label>
+              </div>
+            </div>
+
+            <button class="form__btn">OK</button>
+          </form>
+
+          <!-- <li class="event" data-id="1234567890">
+            <div class="event__title">
+              <i class="ph-gift-fill event__icon"></i>Alexandra's Birthday
+            </div>
+
+            <div class="event__date">October 4, 2021 at 4:00 PM</div>
+            <details class="event__details">
+              <summary class="event__memories--title">My Memories</summary>
+              <p class="event__memories--text">
+                I remember eating so much cake that I couldn't move.
+              </p>
+            </details>
+          </li> -->
+
+          <!-- <li class="event" data-id="123456222">
+            <div class="event__title">
+              <i class="ph-gift-fill event__icon"></i>Bryan's Birthday
+            </div>
+
+            <div class="event__date">October 22, 2021 at 11:00 PM</div>
+            <details class="event__details">
+              <summary class="event__memories--title">My Memories</summary>
+              <p class="event__memories--text">
+                The thing I'll remember most is when you gave me the brown
+                leather wallet.
+              </p>
+            </details>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
