@@ -30,8 +30,6 @@ const btnDeleteEvent = Array.from(
 const inputRadioBtns = Array.from(document.querySelectorAll('.radio__btn'));
 const formLabelIcons = Array.from(document.querySelectorAll('.form__icon'));
 
-console.dir(btnDeleteEvent);
-
 class MemoryEvent {
   id = (Date.now() + '').slice(-10);
 
@@ -46,7 +44,7 @@ class MemoryEvent {
   }
   _setDescription() {
     const options = { day: 'numeric', month: 'long' };
-    this.description = `${this.eventTitle} on ${new Date(
+    this.description = `${this.icon} ${this.eventTitle} on ${new Date(
       this.date
     ).toLocaleDateString(undefined, options)}`;
   }
@@ -206,11 +204,10 @@ class App {
   }
 
   _renderMemoryEventMarker(memEvent) {
-    const myIcon = L.divIcon({
-      html: `<i class="${memEvent.icon}"></i>`,
-      iconSize: [28, 28],
+    const myIcon = L.icon({
+      iconUrl: '/map-pin-fill.svg',
+      iconSize: [40, 40],
       popupAnchor: [0, 0],
-      className: 'my-div-icon',
     });
     L.marker(memEvent.coords, {
       icon: myIcon,
@@ -225,7 +222,7 @@ class App {
           closeOnClick: false,
         })
       )
-      .setPopupContent(`🎉 ${memEvent.description}`)
+      .setPopupContent(`${memEvent.description}`)
       .openPopup();
   }
 
@@ -236,7 +233,8 @@ class App {
       <i class="ph-x-circle event__icon--close"></i>
     </button>  
     <div class="event__title">
-      <i class="${memEvent.icon} event__icon"></i>${memEvent.eventTitle}
+      <span class="event__emoji">${memEvent.icon}</span>
+      <span class="event__title__text">${memEvent.eventTitle}</span>
     </div>
     <div class="event__date">${memEvent.detailsDate}</div>
     <details class="event__details">
