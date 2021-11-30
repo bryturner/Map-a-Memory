@@ -1,20 +1,5 @@
 'use strict';
 
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-
 const detailsCheckbox = document.getElementById('details__checkbox');
 const btnHeaderClose = document.querySelector('.btn__header__list');
 const instructions = document.querySelector('.instructions');
@@ -23,6 +8,7 @@ const containerEvents = document.querySelector('.events');
 const inputEvent = document.querySelector('.form__input--event');
 const inputDate = document.querySelector('.form__input--date');
 const inputMemory = document.querySelector('.form__input--memory');
+const deleteIcon = document.querySelectorAll('.event__icon--close');
 
 const btnDeleteEvent = Array.from(
   document.querySelectorAll('.btn__event__close')
@@ -98,7 +84,6 @@ class App {
   _loadMap(position) {
     const { latitude, longitude } = position.coords;
     const coords = [latitude, longitude];
-    console.log(`https://www.google.com/maps/@${latitude},${longitude},15z`);
 
     this.#map = L.map('map').setView(coords, 13);
 
@@ -163,38 +148,24 @@ class App {
   _newMemoryEvent(e) {
     e.preventDefault();
 
-    const validateRadioBtns = radioBtns => {
-      for (let i = 0; i < radioBtns.length; i++) {
-        if (radioBtns[i].checked) return true;
-      }
-      return false;
-    };
-
     const eventTitle = inputEvent.value;
     const eventDate = inputDate.value;
     const memory = inputMemory.value;
     const { lat, lng } = this.#mapEvent.latlng;
     let memEvent;
 
-    // if (validateRadioBtns(document.forms['eventForm']['radioIcon']) === false)
-    //   return alert('false');
-
-    if (validateRadioBtns(document.forms['eventForm']['radioIcon']) === true) {
-      inputRadioBtns.forEach((btn, i) => {
-        if (btn.checked) {
-          const icon = inputRadioBtns[i].value;
-          memEvent = new MemoryEvent(
-            [lat, lng],
-            eventTitle,
-            eventDate,
-            memory,
-            icon
-          );
-        }
-      });
-    }
-
-    console.log(memEvent);
+    inputRadioBtns.forEach((btn, i) => {
+      if (btn.checked) {
+        const icon = inputRadioBtns[i].value;
+        memEvent = new MemoryEvent(
+          [lat, lng],
+          eventTitle,
+          eventDate,
+          memory,
+          icon
+        );
+      }
+    });
 
     this.#memoryEvents.push(memEvent);
     this._renderMemoryEventMarker(memEvent);
@@ -206,7 +177,7 @@ class App {
   _renderMemoryEventMarker(memEvent) {
     const myIcon = L.icon({
       iconUrl: '/map-pin-fill.svg',
-      iconSize: [40, 40],
+      iconSize: [48, 48],
       popupAnchor: [0, 0],
     });
     L.marker(memEvent.coords, {
@@ -247,6 +218,7 @@ class App {
   `;
 
     form.insertAdjacentHTML('afterend', html);
+    console.log(containerEvents);
   }
 
   _moveToPopup(e) {
@@ -269,25 +241,27 @@ class App {
   }
 
   _getLocalStorage() {
+    let memEvent;
     const data = JSON.parse(localStorage.getItem('memEvents'));
+
     if (!data) return;
 
-    this.#memoryEvents = data;
+    data.forEach(d => {
+      memEvent = new MemoryEvent(
+        d.coords,
+        d.eventTitle,
+        d.date,
+        d.memory,
+        d.icon
+      );
+
+      this.#memoryEvents.push(memEvent);
+    });
 
     this.#memoryEvents.forEach(mEvent => this._renderMemoryEvent(mEvent));
   }
 
-  // _removeFromLocalStorage(e) {
-  //   console.log(this.#memoryEvents);
-  //   console.log(btnDeleteEvent);
-  //   const eventElement = e.target.closest('.event');
-  //   console.log(eventElement);
-
-  //   const memoEvent = this.#memoryEvents.find(
-  //     memE => memE.id === eventElement.dataset.id
-  //   );
-  //   console.log(memoEvent);
-  // }
+  removeFromLocalStorage() {}
 
   reset() {
     localStorage.removeItem('memEvents');
