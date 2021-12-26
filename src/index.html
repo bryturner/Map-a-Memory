@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="/src/img/brain-duotone.svg"
+      type="image/svg"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+    <script defer src="script.js"></script>
+    <title>Rememb-o-Map | Save your memories</title>
+  </head>
+  <body>
+    <div class="body__container">
+      <header class="heading">
+        <input type="checkbox" name="details" id="details__checkbox" />
+        <label for="details__checkbox" class="header__label"
+          ><i class="ph-info header__icon"></i
+        ></label>
+        <div class="header__list__container">
+          <ul class="header__list">
+            <button class="btn btn__header__list btn--close">
+              <i class="ph-x-circle header__list__icon--close close__icon"></i>
+            </button>
+
+            <li class="header__list__item">
+              Keep track of all the good memories by recording where and when
+              they happened as well as special memories from the event.
+            </li>
+            <li class="header__list__item">
+              To view the code and the README for this site, please visit my
+              <a
+                href="https://github.com/bryturner/Rememb-o-map"
+                target="_blank"
+                >repository.</a
+              >
+            </li>
+          </ul>
+        </div>
+        <h1 class="primary-heading">The Rememb-o-Map</h1>
+      </header>
+      <div id="map"></div>
+      <div class="sidebar">
+        <ul class="events">
+          <!-- hidden -->
+          <div class="instructions">Select the location of the event</div>
+          <form name="eventForm" class="form hidden">
+            <div class="form__container--event-date">
+              <div class="form__row form__row--event">
+                <label class="form__label">The Occasion</label>
+                <input
+                  type="text"
+                  name="event-title"
+                  class="form__input form__input--event"
+                  placeholder="Alexandra's Birthday"
+                  required
+                />
+              </div>
+              <div class="form__row form__row--date">
+                <label class="form__label">Date & Time</label>
+                <input
+                  required
+                  class="form__input form__input--date"
+                  type="datetime-local"
+                />
+              </div>
+            </div>
+            <div class="form__row form__row--memory">
+              <label class="form__label">My Memories</label>
+              <textarea
+                required
+                cols="30"
+                rows="3"
+                class="form__input form__input--memory"
+                placeholder="I remember..."
+              ></textarea>
+            </div>
+            <div class="form__row form__row--radios">
+              <span class="form__label form__label--span"
+                >Choose an icon for the occasion</span
+              >
+              <div class="radio__buttons">
+                <label class="form__label--radio form__icon" for="heart"
+                  >&#128149;<input
+                    required="required"
+                    value="&#128149;"
+                    type="radio"
+                    name="radioIcon"
+                    id="heart"
+                    class="radio__btn"
+                /></label>
+
+                <label class="form__label--radio form__icon" for="gift"
+                  >&#127873;<input
+                    required="required"
+                    value="&#127873;"
+                    type="radio"
+                    name="radioIcon"
+                    id="gift"
+                    class="radio__btn"
+                /></label>
+
+                <label class="form__label--radio form__icon" for="smiley">
+                  &#128516;<input
+                    required="required"
+                    value="&#128516;"
+                    type="radio"
+                    name="radioIcon"
+                    id="smiley"
+                    class="radio__btn"
+                /></label>
+
+                <label class="form__label--radio form__icon" for="drink"
+                  >&#129346;
+                  <input
+                    required="required"
+                    value="&#129346;"
+                    type="radio"
+                    name="radioIcon"
+                    id="drink"
+                    class="radio__btn"
+                /></label>
+
+                <label class="form__label--radio form__icon" for="fork-knife"
+                  >&#127860;<input
+                    required="required"
+                    value="&#127860;"
+                    type="radio"
+                    name="radioIcon"
+                    id="fork-knife"
+                    class="radio__btn"
+                /></label>
+
+                <label class="form__label--radio form__icon" for="ticket"
+                  >&#127915;
+                  <input
+                    required="required"
+                    value="&#127915;"
+                    type="radio"
+                    name="radioIcon"
+                    id="ticket"
+                    class="radio__btn"
+                /></label>
+
+                <label class="form__label--radio form__icon" for="masks"
+                  >&#127917;
+                  <input
+                    required="required"
+                    value="&#127917;"
+                    type="radio"
+                    name="radioIcon"
+                    id="masks"
+                    class="radio__btn"
+                /></label>
+
+                <label class="form__label--radio form__icon" for="music"
+                  >&#127926;
+                  <input
+                    required="required"
+                    value="&#127926;"
+                    type="radio"
+                    name="radioIcon"
+                    id="music"
+                    class="radio__btn"
+                /></label>
+
+                <label class="form__label--radio form__icon" for="person"
+                  >&#128694;<input
+                    required="required"
+                    value="&#128694;"
+                    type="radio"
+                    name="radioIcon"
+                    id="person"
+                    class="radio__btn"
+                /></label>
+              </div>
+            </div>
+
+            <button class="form__btn btn--hide">Remember!</button>
+          </form>
+
+          <!-- <li class="event" data-id="1234567890">
+            <button class="btn btn__event__close btn--close">
+              <i class="ph-x-circle event__icon--close"></i>
+            </button>
+            <div class="event__title">
+              <span class="event__emoji">&#127873;</span>
+              <span class="event__title__text">Alexandra's Birthday</span>
+            </div>
+
+            <div class="event__date">October 4, 2021 at 4:00 PM</div>
+            <details class="event__details">
+              <summary class="event__memories--title">My Memories</summary>
+              <p class="event__memories--text">
+                I remember eating so much cake that I couldn't move.
+              </p>
+            </details>
+          </li> -->
+
+          <!-- <li class="event" data-id="123456222">
+            <div class="event__title">
+              <i class="ph-gift-fill event__icon"></i>Bryan's Birthday
+            </div>
+
+            <div class="event__date">October 22, 2021 at 11:00 PM</div>
+            <details class="event__details">
+              <summary class="event__memories--title">My Memories</summary>
+              <p class="event__memories--text">
+                The thing I'll remember most is when you gave me the brown
+                leather wallet.
+              </p>
+            </details>
+          </li> -->
+        </ul>
+        <button class="btn btn__reset btn--opacity">Reset</button>
+      </div>
+    </div>
+  </body>
+</html>

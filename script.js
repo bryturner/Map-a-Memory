@@ -184,7 +184,7 @@ class App {
 
   _renderMemoryEventMarker(memEvent) {
     const myIcon = L.icon({
-      iconUrl: '/map-pin-fill.svg',
+      iconUrl: '/src/img/map-pin-fill.svg',
       iconSize: [48, 48],
       popupAnchor: [0, 0],
     });
@@ -284,4 +284,4 @@ class App {
   }
 }
 
-const app = new App();
+// const app = new App();
