@@ -9,6 +9,7 @@ const inputEvent = document.querySelector('.form__input--event');
 const inputDate = document.querySelector('.form__input--date');
 const inputMemory = document.querySelector('.form__input--memory');
 const deleteIcon = document.querySelectorAll('.event__icon--close');
+const btnReset = document.querySelector('.btn__reset');
 
 const btnDeleteEvent = Array.from(
   document.querySelectorAll('.btn__event__close')
@@ -65,6 +66,7 @@ class App {
     // Event listeners
     form.addEventListener('submit', this._newMemoryEvent.bind(this));
     containerEvents.addEventListener('click', this._moveToPopup.bind(this));
+    btnReset.addEventListener('click', this._resetLocalStorage.bind(this));
     // btnDeleteEvent.forEach(btn => {
     //   btn.addEventListener('click', this._removeFromLocalStorage.bind(this));
     // });
@@ -172,6 +174,12 @@ class App {
     this._renderMemoryEvent(memEvent);
     this._hideForm();
     this._setLocaleStorage();
+    this._showResetButton();
+  }
+
+  _showResetButton() {
+    if (!btnReset.classList.contains('btn--opacity')) return;
+    btnReset.classList.remove('btn--opacity');
   }
 
   _renderMemoryEventMarker(memEvent) {
@@ -218,7 +226,6 @@ class App {
   `;
 
     form.insertAdjacentHTML('afterend', html);
-    console.log(containerEvents);
   }
 
   _moveToPopup(e) {
@@ -259,6 +266,14 @@ class App {
     });
 
     this.#memoryEvents.forEach(mEvent => this._renderMemoryEvent(mEvent));
+
+    btnReset.classList.remove('btn--opacity');
+  }
+
+  _resetLocalStorage(e) {
+    e.preventDefault();
+    localStorage.removeItem('memEvents');
+    location.reload();
   }
 
   removeFromLocalStorage() {}

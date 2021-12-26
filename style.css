@@ -107,6 +107,27 @@ body {
   color: var(--color-brand--1);
 }
 
+.btn__reset {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 50%;
+  font-size: 1.6rem;
+  font-family: inherit;
+  background-color: #d5f2f0be;
+  padding: 0 4rem;
+  border-radius: 5px;
+  transform: translate(-50%, 0);
+  transition: var(--transition--4);
+}
+
+.btn__reset:hover {
+  background-color: var(--color-lightest--text);
+}
+
+.btn--opacity {
+  opacity: 0;
+}
+
 /* HEADING */
 .heading {
   grid-column: 1 / -1;
@@ -181,7 +202,7 @@ body {
   color: var(--color-secondary--4);
   font-size: 3rem;
   text-align: center;
-  padding: 0.8rem 0;
+  padding: 0.4rem 0;
 }
 
 /* Chose to put map before sidebar in order to make responsive design easier to adapt with the sidebar moving under the map */
@@ -201,9 +222,10 @@ body {
 }
 
 .sidebar {
+  position: relative;
   grid-column: 1/ 2;
   background-color: var(--color-dark--1);
-  padding: 3.4rem 4rem;
+  padding: 2.8rem 4rem 4rem 4rem;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -394,6 +416,25 @@ body {
 }
 
 .form__btn {
+  font-family: inherit;
+  font-size: 1.6rem;
+  justify-self: center;
+  background: none;
+  border: 2px solid var(--color-brand--1);
+  border-radius: 5px;
+  width: 50%;
+  padding: 0.8rem 1.6rem;
+  transition: var(--transition--4);
+  cursor: pointer;
+  /* display: none; */
+}
+
+.form__btn:hover {
+  color: var(--color-lightest--text);
+  background-color: var(--color-brand--1);
+}
+
+.btn--hide {
   display: none;
 }
 
