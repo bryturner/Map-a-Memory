@@ -8,12 +8,8 @@ const containerEvents = document.querySelector('.events');
 const inputEvent = document.querySelector('.form__input--event');
 const inputDate = document.querySelector('.form__input--date');
 const inputMemory = document.querySelector('.form__input--memory');
-const deleteIcon = document.querySelectorAll('.event__icon--close');
 const btnReset = document.querySelector('.btn__reset');
 
-const btnDeleteEvent = Array.from(
-  document.querySelectorAll('.btn__event__close')
-);
 const inputRadioBtns = Array.from(document.querySelectorAll('.radio__btn'));
 const formLabelIcons = Array.from(document.querySelectorAll('.form__icon'));
 
@@ -61,15 +57,11 @@ class App {
     this._removeIconClass();
     this._selectIcon();
     this._closeDetailsBox();
-    // this._removeFromLocalStorage();
 
     // Event listeners
     form.addEventListener('submit', this._newMemoryEvent.bind(this));
     containerEvents.addEventListener('click', this._moveToPopup.bind(this));
     btnReset.addEventListener('click', this._resetLocalStorage.bind(this));
-    // btnDeleteEvent.forEach(btn => {
-    //   btn.addEventListener('click', this._removeFromLocalStorage.bind(this));
-    // });
   }
 
   _getPosition() {
@@ -184,7 +176,7 @@ class App {
 
   _renderMemoryEventMarker(memEvent) {
     const myIcon = L.icon({
-      iconUrl: '/map-pin-fill.svg',
+      iconUrl: '/img/map-pin-fill.svg',
       iconSize: [48, 48],
       popupAnchor: [0, 0],
     });
@@ -206,11 +198,8 @@ class App {
   }
 
   _renderMemoryEvent(memEvent) {
-    let html = `
-  <li class='event' data-id="${memEvent.id}">
-    <button class="btn btn__event__close btn--close">
-      <i class="ph-x-circle event__icon--close"></i>
-    </button>  
+    const html = `
+  <li class='event' data-id="${memEvent.id}">  
     <div class="event__title">
       <span class="event__emoji">${memEvent.icon}</span>
       <span class="event__title__text">${memEvent.eventTitle}</span>
@@ -272,13 +261,6 @@ class App {
 
   _resetLocalStorage(e) {
     e.preventDefault();
-    localStorage.removeItem('memEvents');
-    location.reload();
-  }
-
-  removeFromLocalStorage() {}
-
-  reset() {
     localStorage.removeItem('memEvents');
     location.reload();
   }
