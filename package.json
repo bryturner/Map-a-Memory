@@ -1,15 +1,14 @@
 {
   "dependencies": {
-    "express": "^4.17.1",
     "leaflet": "^1.7.1"
   },
-  "name": "fitness-app",
+  "name": "rememb-o-map",
   "version": "1.0.0",
-  "main": "script-copy.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Bryan Turner",
   "license": "ISC",
   "description": ""
 }
