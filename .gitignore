@@ -2,3 +2,4 @@ save.md
 .prettierrc
 node_modules
 .vscode
+.DS_Store
