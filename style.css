@@ -246,7 +246,7 @@ body {
   font-size: 2.4rem;
   text-align: center;
   margin-bottom: 1.6rem;
-  transition: all 0.4s;
+  transition: var(--transition--4);
 }
 
 .instructions--hide {
@@ -366,6 +366,12 @@ body {
   margin-bottom: 0.4rem;
 }
 
+.form__btn__container {
+  display: flex;
+  justify-content: center;
+  gap: 1.6rem;
+}
+
 /* !inputs */
 .form__input {
   border: 1px solid var(--color-dark--text);
@@ -412,17 +418,36 @@ body {
 .form__btn {
   font-family: inherit;
   font-size: 1.6rem;
-  justify-self: center;
   background: none;
   border: 2px solid var(--color-brand--1);
   border-radius: 5px;
-  width: 50%;
-  padding: 0.8rem 1.6rem;
+  padding: 0.6rem 1.6rem;
   transition: var(--transition--4);
   cursor: pointer;
 }
 
 .form__btn:hover {
+  color: var(--color-lightest--text);
+  background-color: var(--color-brand--1);
+}
+
+.form__btn--primary {
+  color: var(--color-lightest--text);
+  background-color: var(--color-brand--1);
+  /* width: 25rem; */
+  flex: 2;
+}
+
+.form__btn--secondary {
+  flex: 1;
+}
+
+.form__btn--primary:hover {
+  color: inherit;
+  background: none;
+}
+
+.form__btn--secondary:hover {
   color: var(--color-lightest--text);
   background-color: var(--color-brand--1);
 }
