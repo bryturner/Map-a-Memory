@@ -8,6 +8,7 @@ const containerEvents = document.querySelector('.events');
 const inputEvent = document.querySelector('.form__input--event');
 const inputDate = document.querySelector('.form__input--date');
 const inputMemory = document.querySelector('.form__input--memory');
+const formCloseBtn = document.querySelector('.form__btn--close');
 const btnReset = document.querySelector('.btn__reset');
 
 const inputRadioBtns = Array.from(document.querySelectorAll('.radio__btn'));
@@ -62,6 +63,7 @@ class App {
     form.addEventListener('submit', this._newMemoryEvent.bind(this));
     containerEvents.addEventListener('click', this._moveToPopup.bind(this));
     btnReset.addEventListener('click', this._resetLocalStorage.bind(this));
+    formCloseBtn.addEventListener('click', this._hideForm.bind(this));
   }
 
   _getPosition() {
@@ -110,6 +112,7 @@ class App {
       labelIcon.classList.remove('form__icon--selected')
     );
     form.classList.add('hidden');
+    instructions.classList.remove('instructions--hide');
   }
 
   _removeIconClass() {
