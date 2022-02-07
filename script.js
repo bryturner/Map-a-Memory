@@ -27,7 +27,7 @@ class MemoryEvent {
   }
   _setDescription() {
     const options = { day: 'numeric', month: 'long' };
-    this.description = `${this.icon} ${this.eventTitle} on ${new Date(
+    this.description = `${this.icon} &nbsp; ${this.eventTitle} on ${new Date(
       this.date
     ).toLocaleDateString(undefined, options)}`;
   }
@@ -62,6 +62,7 @@ class App {
     form.addEventListener('submit', this._newMemoryEvent.bind(this));
     containerEvents.addEventListener('click', this._moveToPopup.bind(this));
     btnReset.addEventListener('click', this._resetLocalStorage.bind(this));
+    
   }
 
   _getPosition() {
