@@ -1,7 +1,7 @@
 /* 
 primary-colors: #2ebeb4 #f4705b #fba63b
 secondary-colors: #33396d #707499 #ab4e40
-light-shades: #eaf9f8 #d5f2f0 #6dd2cb #fef1ef #feedd8 #fdca89
+light-shades: #eaf9f8 #d5f2f0 #6dd2cb #fef1ef  
 dark-shades: #259890 #175f5a 
 dark for text: #092624 #0e3936
 */
@@ -12,10 +12,10 @@ dark for text: #092624 #0e3936
 
   --color-secondary--1: #f4705b;
   --color-secondary--2: #f68d7c;
-  --color-secondary--3: rgb(171, 78, 64);
+  --color-secondary--3: #ab4e40;
   --color-secondary--4: #49221b;
 
-  --color-dark--1: rgb(37, 152, 144);
+  --color-dark--1: #57b3ac;
   --color-dark--2: #175f5a;
 
   --color-light--1: #d5f2f0;
@@ -38,7 +38,6 @@ dark for text: #092624 #0e3936
 html {
   font-size: 62.5%;
   font-family: 'Baloo 2', cursive;
-  /* font-family: 'Roboto', sans-serif; */
   box-sizing: border-box;
 }
 
@@ -367,11 +366,6 @@ body {
   margin-bottom: 0.4rem;
 }
 
-/* .form__label--radio {
-  
-  font-size: 1.6rem;
-} */
-
 /* !inputs */
 .form__input {
   border: 1px solid var(--color-dark--text);
@@ -426,7 +420,6 @@ body {
   padding: 0.8rem 1.6rem;
   transition: var(--transition--4);
   cursor: pointer;
-  /* display: none; */
 }
 
 .form__btn:hover {
@@ -488,8 +481,3 @@ body {
 .leaflet-popup .leaflet-popup-tip {
   background-color: var(--color-dark--1);
 }
-
-/* .leaflet-marker-icon {
-  margin-left: -17px !important;
-  margin-top: -15px !important;
-} */

@@ -62,7 +62,6 @@ class App {
     form.addEventListener('submit', this._newMemoryEvent.bind(this));
     containerEvents.addEventListener('click', this._moveToPopup.bind(this));
     btnReset.addEventListener('click', this._resetLocalStorage.bind(this));
-    
   }
 
   _getPosition() {
