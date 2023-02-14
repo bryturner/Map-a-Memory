@@ -52,6 +52,15 @@ body {
   padding: 2.5rem;
 }
 
+.screen-size-error {
+  display: none;
+}
+
+.screen-size-error-text {
+  text-align: center;
+  margin-top: 8rem;
+}
+
 .body__container {
   display: grid;
   grid-template-columns: 35fr 65fr;
@@ -505,4 +514,14 @@ body {
 
 .leaflet-popup .leaflet-popup-tip {
   background-color: var(--color-dark--1);
+}
+
+@media (max-width: 950px) {
+  .screen-size-error {
+    display: block;
+  }
+
+  .body__container {
+    display: none;
+  }
 }
