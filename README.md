@@ -1,4 +1,4 @@
-# The Rememb-o-map
+# Map-a-Memory
 
 Users click a location on a map where an event (concert, dinner at a restaurant, etc.) occurred and record memories they wish to save from the event. The app uses geolocation to pinpoint the user's location and local storage to save input data.</br></br>
 --> Check out the project [here](https://bryturner.github.io/Rememb-o-map/) <--
